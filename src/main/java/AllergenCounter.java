@@ -9,63 +9,70 @@ import org.apache.commons.lang.StringUtils;
 
 public class AllergenCounter {
   public static void main(String[] args) {
-    // String layout = "templates/layout.vtl";
-    //
-    // get("/", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/main.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
-    //
-    // get("/detector", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/detector.vtl");
-    //   String numberString = request.queryParams("number");
-    //   Integer number = Integer.parseInt(numberString);
-    //   Object results = CoinCombo.makesChange(number);
-    //
-    //   model.put("results", results);
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
+    String layout = "templates/layout.vtl";
+
+    get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/main.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/detector", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/detector.vtl");
+      String number = request.queryParams("number");
+      if(number.length() == 0) {
+        number = "0";
+      }
+      Object results = AllergenCounter.countsAllergens(number);
+      model.put("results", results);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 
-  public static Object countsAllergens(Integer number) {
+  public static Object countsAllergens(String number) {
     ArrayList<String> allergies = new ArrayList<String>();
 
-    if(number >= 256) {
+    if (number.equals("0")) {
+      return "Please enter a number";
+    }
+
+    Integer integerNumber = Integer.parseInt(number);
+
+    if(integerNumber >= 256) {
       return "You're Dead.";
     }
-    while (number >= 128) {
+    while (integerNumber >= 128) {
       allergies.add("cats");
-      number -= 128;
+      integerNumber -= 128;
     }
-    while (number >= 64) {
+    while (integerNumber >= 64) {
       allergies.add("pollen");
-      number -= 64;
+      integerNumber -= 64;
     }
-    while (number >= 32) {
+    while (integerNumber >= 32) {
       allergies.add("chocolate");
-      number -= 32;
+      integerNumber -= 32;
     }
-    while (number >= 16) {
+    while (integerNumber >= 16) {
       allergies.add("tomatoes");
-      number -= 16;
+      integerNumber -= 16;
     }
-    while (number >= 8) {
+    while (integerNumber >= 8) {
       allergies.add("strawberries");
-      number -= 8;
+      integerNumber -= 8;
     }
-    while (number >= 4) {
+    while (integerNumber >= 4) {
       allergies.add("shellfish");
-      number -= 4;
+      integerNumber -= 4;
     }
-    while (number >= 2) {
+    while (integerNumber >= 2) {
       allergies.add("peanuts");
-      number -= 2;
+      integerNumber -= 2;
     }
-    while (number >= 1) {
+    while (integerNumber >= 1) {
       allergies.add("eggs");
-      number --;
+      integerNumber --;
     }
     return "Your allergies are: " + StringUtils.join(allergies, ", ");
   }

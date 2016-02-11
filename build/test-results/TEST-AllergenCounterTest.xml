@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="AllergenCounterTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2016-02-11T19:41:29" hostname="epicodus-64.local" time="0.005">
+<testsuite name="AllergenCounterTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2016-02-11T22:16:53" hostname="epicodus-64.local" time="0.006">
   <properties/>
-  <testcase name="countsshellfish" classname="AllergenCounterTest" time="0.004"/>
+  <testcase name="countsshellfish" classname="AllergenCounterTest" time="0.005"/>
   <testcase name="countsAllergies" classname="AllergenCounterTest" time="0.0"/>
-  <testcase name="countscats" classname="AllergenCounterTest" time="0.001"/>
-  <testcase name="countseggs" classname="AllergenCounterTest" time="0.0"/>
+  <testcase name="countscats" classname="AllergenCounterTest" time="0.0"/>
+  <testcase name="countseggs" classname="AllergenCounterTest" time="0.001"/>
   <testcase name="countspeanuts" classname="AllergenCounterTest" time="0.0"/>
   <testcase name="countstomatoes" classname="AllergenCounterTest" time="0.0"/>
   <testcase name="countstrawberries" classname="AllergenCounterTest" time="0.0"/>
